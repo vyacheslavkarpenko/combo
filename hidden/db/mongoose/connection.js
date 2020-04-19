@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://127.0.0.1/combo--';
+var mongoDB = 'mongodb://127.0.0.1/combo';
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 //Get the default connection

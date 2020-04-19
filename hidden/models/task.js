@@ -2,28 +2,27 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var taskSchema = new Schema({
- name: {
+var TaskModelSchema = new Schema({
+  name: {
     type: String,
     min: [3, 'need 3 char min!'],
     max: [6, '6 chars max!'],
     required: [true, 'Name required!']
   },
-  complete: { type: Boolean, default: false },
+  complete: { type: Boolean, default: false }
 });
 
 // Compile model from schema
-var Task = mongoose.model('Task', taskSchema);
+var TaskModel = mongoose.model('TaskModel', TaskModelSchema);
 
-Task.create({ name: 'created by model' }, function (err, small) {
-  if (err) return handleError(err);
+// Create an instance of model
+var task_instance = new TaskModel({ name: 'awesome' });
+
+// Save the task instance, passing a callback
+task_instance.save(function (err) {
+  // if (err) return handleError(err);
   // saved!
 });
 
-
-
-// exports.all = Task.find({})
-// // exports.all = await Task.find({})
-
-// const all = {"aaa": "aaa"}
-// exports = all
+module.exports = {"sdfsdf": 'asdfasdf'};
+// module.exports = TaskModel;

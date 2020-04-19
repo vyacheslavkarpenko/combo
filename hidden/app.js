@@ -26,6 +26,8 @@ app.use('/users', usersRouter);
 // my routes
 app.use('/tasks', tasksRouter);
 
+console.log('app.js')
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
