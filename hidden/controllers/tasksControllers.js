@@ -26,7 +26,7 @@ exports.tasks = (req, res) => {
 // create task
 exports.create = (req, res) => {
   const { name } = req.body
-  const { completed } = req.body.completed
+  const { completed } = req.body.completed || true
   const newTask = { name: name, completed: completed }
 
   const task = new Task(newTask)
@@ -40,9 +40,9 @@ exports.create = (req, res) => {
 
 // get the task
 exports.task = (req, res) => {
-  const { _id } = req.params
+  const { id } = req.params
 
-  Task.findOne({ _id: _id }, (err, task) => {
+  Task.findOne({ _id: id }, (err, task) => {
     if (err) return console.log(err)
     res.json(task)
   });
@@ -51,16 +51,18 @@ exports.task = (req, res) => {
 // update the task
 exports.update = (req, res) => {
   const { _id } = req.body
-  const { name } = req.body
-  const { completed } = req.body.completed
+  const { name } = req.body || ''
+  const { completed } = req.body.completed || false
 
+
+  console.log(req.body)
   const newTask = { name: name, completed: completed }
 
   Task.findOneAndUpdate({ _id: _id }, newTask, (err, task) => {
     if (err) return console.log(err)
     res.json(task)
   });
-
+};
 
 // delete task
 exports.delete = (req, res) => {
@@ -70,4 +72,4 @@ exports.delete = (req, res) => {
     if (err) return console.log(err)
     res.json(task)
   });
-}
+};
